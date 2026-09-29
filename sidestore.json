@@ -11,20 +11,20 @@
       "bundleIdentifier": "ph.telegra.Telegraph",
       "developerName": "Swiftgram",
       "subtitle": "Telegram fork",
-      "localizedDescription": "Swiftgram 12.9.2 (build 3732), unsigned. iCloud/Siri disabled so it launches when sideloaded.",
+      "localizedDescription": "Swiftgram 12.9.2 (build 3733), unsigned. Own API credentials; iCloud/Siri disabled so it launches when sideloaded.",
       "iconURL": "https://github.com/ziahka.png",
       "tintColor": "#2AABEE",
       "category": "social",
       "version": "12.9.2",
-      "versionDate": "2026-09-29",
-      "downloadURL": "https://github.com/ziahka/swiftgram-ios/releases/download/build-3732/App.ipa",
-      "size": 81301084,
+      "versionDate": "2026-09-30",
+      "downloadURL": "https://github.com/ziahka/swiftgram-ios/releases/download/build-3733/App.ipa",
+      "size": 81299528,
       "versions": [
         {
           "version": "12.9.2",
-          "date": "2026-09-29",
-          "downloadURL": "https://github.com/ziahka/swiftgram-ios/releases/download/build-3732/App.ipa",
-          "size": 81301084
+          "date": "2026-09-30",
+          "downloadURL": "https://github.com/ziahka/swiftgram-ios/releases/download/build-3733/App.ipa",
+          "size": 81299528
         }
       ]
     }

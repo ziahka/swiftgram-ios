@@ -30,6 +30,21 @@ jobs:
           XCODE_VERSION=$(cat versions.json | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["xcode"]);')
           sudo xcode-select -s /Applications/Xcode_$XCODE_VERSION.app/Contents/Developer
 
+      - name: Inject API credentials
+        env:
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p = "build-system/appstore-configuration.json"
+          d = json.load(open(p))
+          d["api_id"] = os.environ["API_ID"]
+          d["api_hash"] = os.environ["API_HASH"]
+          json.dump(d, open(p, "w"), indent="\t")
+          print("api_id set:", bool(d["api_id"]), "| api_hash set:", bool(d["api_hash"]))
+          PY
+
       - name: Create canonical source directory
         run: |
           set -x

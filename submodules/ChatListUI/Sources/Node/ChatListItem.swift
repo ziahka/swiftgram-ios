@@ -3581,6 +3581,8 @@ public class ChatListItemNode: ItemListRevealOptionsItemNode {
                             
                             if peer.isVerified {
                                 currentCredibilityIconContent = .verified(fillColor: item.presentationData.theme.list.itemCheckColors.fillColor, foregroundColor: item.presentationData.theme.list.itemCheckColors.foregroundColor, sizeType: .compact)
+                            } else if isExteraCommunityPeer(peer) {
+                                currentCredibilityIconContent = .text(color: item.presentationData.theme.list.itemAccentColor, string: "➤")
                             }
                             if let verificationIconFileId = peer.verificationIconFileId {
                                 currentVerifiedIconContent = .animation(content: .customEmoji(fileId: verificationIconFileId), size: CGSize(width: 32.0, height: 32.0), placeholderColor: item.presentationData.theme.list.mediaPlaceholderColor, themeColor: item.presentationData.theme.list.itemAccentColor, loopMode: .count(0))
@@ -3612,6 +3614,8 @@ public class ChatListItemNode: ItemListRevealOptionsItemNode {
                     
                     if peer.isVerified {
                         currentCredibilityIconContent = .verified(fillColor: item.presentationData.theme.list.itemCheckColors.fillColor, foregroundColor: item.presentationData.theme.list.itemCheckColors.foregroundColor, sizeType: .compact)
+                    } else if isExteraCommunityPeer(peer) {
+                        currentCredibilityIconContent = .text(color: item.presentationData.theme.list.itemAccentColor, string: "➤")
                     }
                     if let verificationIconFileId = peer.verificationIconFileId {
                         currentVerifiedIconContent = .animation(content: .customEmoji(fileId: verificationIconFileId), size: CGSize(width: 32.0, height: 32.0), placeholderColor: item.presentationData.theme.list.mediaPlaceholderColor, themeColor: item.presentationData.theme.list.itemAccentColor, loopMode: .count(0))

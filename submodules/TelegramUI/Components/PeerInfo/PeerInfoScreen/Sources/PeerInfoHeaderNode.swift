@@ -485,6 +485,7 @@ final class PeerInfoHeaderNode: ASDisplayNode {
         case none
         case premium
         case verified
+        case exteraCommunity
         case fake
         case scam
         case emojiStatus(PeerEmojiStatus)
@@ -614,6 +615,8 @@ final class PeerInfoHeaderNode: ASDisplayNode {
             }
             if peer.isVerified {
                 credibilityIcon = .verified
+            } else if isExteraCommunityPeer(peer) {
+                credibilityIcon = .exteraCommunity
             }
             if let verificationIconFileId = peer.verificationIconFileId {
                 verifiedIcon = .emojiStatus(PeerEmojiStatus(content: .emoji(fileId: verificationIconFileId), expirationDate: nil))
@@ -911,6 +914,9 @@ final class PeerInfoHeaderNode: ASDisplayNode {
             case .verified:
                 emojiRegularStatusContent = .verified(fillColor: presentationData.theme.list.itemCheckColors.fillColor, foregroundColor: presentationData.theme.list.itemCheckColors.foregroundColor, sizeType: .large)
                 emojiExpandedStatusContent = .verified(fillColor: navigationContentsAccentColor, foregroundColor: .clear, sizeType: .large)
+            case .exteraCommunity:
+                emojiRegularStatusContent = .text(color: navigationContentsAccentColor, string: "➤")
+                emojiExpandedStatusContent = emojiRegularStatusContent
             case .fake:
                 emojiRegularStatusContent = .text(color: presentationData.theme.chat.message.incoming.scamColor, string: presentationData.strings.Message_FakeAccount.uppercased())
                 emojiExpandedStatusContent = emojiRegularStatusContent

@@ -101,6 +101,7 @@ public struct Namespaces {
         public static let CloudDefaultTagReactions: Int32 = 29
         public static let CloudUniqueStarGifts: Int32 = 30
         public static let NewBotConnectionReviews: Int32 = 31
+        public static let LocallyDeletedMessages: Int32 = 32
     }
     
     public struct CachedItemCollection {

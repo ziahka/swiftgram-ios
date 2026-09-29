@@ -29,6 +29,7 @@ private enum SGControllerSection: Int32, SGItemListSection {
     case search
     case trending
     case content
+    case deletedMessages
     case tabs
     case folders
     case chatList
@@ -127,6 +128,7 @@ private enum SGSliderSetting: String {
 private enum SGDisclosureLink: String {
     case contentSettings
     case languageSettings
+    case deletedMessages
 }
 
 private struct PeerNameColorScreenState: Equatable {
@@ -167,6 +169,10 @@ private func SGControllerEntries(presentationData: PresentationData, callListSet
     } else {
         id.increment(1)
     }
+
+    entries.append(.header(id: id.count, section: .deletedMessages, text: lang == "ru" ? "УДАЛЁННЫЕ СООБЩЕНИЯ" : "DELETED MESSAGES", badge: nil))
+    entries.append(.disclosure(id: id.count, section: .deletedMessages, link: .deletedMessages, text: lang == "ru" ? "Локальный архив" : "Local archive"))
+    entries.append(.notice(id: id.count, section: .deletedMessages, text: lang == "ru" ? "Сохраняется текст сообщений, полученных на этом устройстве до удаления. Медиа не сохраняются." : "Saves text already received on this device before deletion. Media is not saved."))
     
     entries.append(.header(id: id.count, section: .tabs, text: i18n("Settings.Tabs.Header", lang), badge: nil))
     entries.append(.toggle(id: id.count, section: .tabs, settingName: .hideTabBar, value: SGSimpleSettings.shared.hideTabBar, text: i18n("Settings.Tabs.HideTabBar", lang), enabled: true))
@@ -691,6 +697,8 @@ public func sgSettingsController(context: AccountContext/*, focusOnItemTag: Int?
                     }
                     strongContext.sharedContext.applicationBindings.openUrl(url)
                 })
+            case .deletedMessages:
+                pushControllerImpl?(locallyDeletedMessagesController(context: context))
         }
     }, searchInput: { searchQuery in
         updateState { state in
